@@ -27,23 +27,23 @@
 </head>
 <body>
 <nav class="navbar navbar-dark bg-dark">
-  <div class="container-fluid">
+  <div class="container">
     <a class="navbar-brand" href="#">
-      <img src="https://x-workz.in/static/media/Logo.cf195593dc1b3f921369.png" alt="" width="70" height="70">
+      <img src="https://x-workz.in/static/media/Logo.cf195593dc1b3f921369.png" alt="" width="125" height="70" class="me-2">
     </a>
     <li class="nav-item">
        </ul>
           <form class="d-flex" action="">
-              <a class="nav-link" href="signin">Sign up</a>
-               <a class="nav-link" href="index">Home</a>
+              <a class="nav-link btn-outline-light me-2 px-3 text-info" href="signin">Sign Up</a>
+               <a class="nav-link btn-primary px-3 text-dark fw-bold" href="index">Home</a>
           </form>
        </li>
   </div>
 </nav>
 <c:if test="${not empty error}">
-    <p style="color: black;">${error}</p>
+    <h4 style="color: black;"><center>${error}</center><h4>
 </c:if>
-<div class="d-flex justify-content-center align-items-center ">
+<div class="d-flex justify-content-center align-items-center mt-5">
 <div class="card custom-card">
     <div class="card-body">
         <h4 class="card-title text-center">User Registration</h4>

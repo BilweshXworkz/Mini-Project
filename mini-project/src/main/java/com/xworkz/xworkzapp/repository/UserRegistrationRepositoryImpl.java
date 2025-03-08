@@ -4,6 +4,7 @@ import com.xworkz.xworkzapp.entity.UserRegistrationEntity;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Service
 public class UserRegistrationRepositoryImpl implements UserRegistrationRepository{
@@ -31,13 +32,62 @@ public class UserRegistrationRepositoryImpl implements UserRegistrationRepositor
             TypedQuery<UserRegistrationEntity> query = entityManager.createNamedQuery("authenticateUser", UserRegistrationEntity.class);
             query.setParameter("emailId", emailId);
             query.setParameter("password", password);
-            return query.getSingleResult();
-        } catch (Exception e) {
+            UserRegistrationEntity user = query.getSingleResult();
+
+            if (user != null){
+                if (user.getAccountLockedUntil() != null && user.getAccountLockedUntil().isAfter(LocalDateTime.now())) {
+                    System.out.println("Account is locked until "+user.getAccountLockedUntil());
+                    return null;
+                }
+                resetFailedAttempts(user);
+            }
+            return user;
+        } catch (NoResultException e) {
             System.out.println(e.getMessage());
+            updateFailedAttemps(emailId);
+            return null;
         }finally {
             entityManager.close();
         }
-        return null;
+    }
+
+    private void resetFailedAttempts(UserRegistrationEntity user){
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        try{
+            entityManager.getTransaction().begin();
+            user.setFailedAttempts(0);
+            user.setAccountLockedUntil(null);
+            entityManager.merge(user);
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    private void updateFailedAttemps(String emailId){
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        try{
+            entityManager.getTransaction().begin();
+            UserRegistrationEntity user = fetchEmail(emailId);
+
+            if (user != null){
+                int attempts = user.getFailedAttempts() + 1;
+                user.setFailedAttempts(attempts);
+
+                if (attempts >= 3){
+                    user.setAccountLockedUntil(LocalDateTime.now().plusHours(1));
+                    System.out.println("Account is locked for 24 hours");
+                }
+                entityManager.merge(user);
+                entityManager.getTransaction().commit();
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            entityManager.close();
+        }
     }
 
     @Override

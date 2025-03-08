@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=US-ASCII"
+        pageEncoding="US-ASCII"%>
+ <%@ page isELIgnored="false" %>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>X-Workz</title>
@@ -30,11 +34,15 @@
        </ul>
           <form class="d-flex" action="">
               <a class="nav-link" href="signup">Sign Up</a>
+              <a class="nav-link btn-primary px-3 text-dark fw-bold" href="index">Home</a>
           </form>
        </li>
   </div>
 </nav>
-<div class="d-flex justify-content-center align-items-center ">
+<c:if test="${not empty errorMessage}">
+    <h4 style="color: black; text-align: center;">${errorMessage}</h4>
+</c:if>
+<div class="d-flex justify-content-center align-items-center mt-5">
 <div class="card custom-card">
     <div class="card-body">
         <h4 class="card-title text-center">User Logging</h4>
@@ -42,7 +50,6 @@
             <div class="mb-3">
                 <label class="form-label">Email Id</label>
                 <input type="text" name="emailId" class="form-control">
-
                 <label class="form-label">Password</label>
                 <input type="password" name="password" class="form-control">
             <div class="mb-3 text-center">

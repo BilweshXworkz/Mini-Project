@@ -25,27 +25,34 @@
         </style>
 </head>
 <body>
-<nav class="navbar navbar-dark bg-dark">
-  <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
     <a class="navbar-brand" href="#">
-      <img src="https://x-workz.in/static/media/Logo.cf195593dc1b3f921369.png" alt="" width="70" height="70">
+      <img src="https://x-workz.in/static/media/Logo.cf195593dc1b3f921369.png" alt="" width="125" height="70">
     </a>
+    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
     <li class="nav-item">
-       </ul>
-          <form class="d-flex" action="">
-              <a class="nav-link" href="signup">Sign In</a>
-               <a class="nav-link" href="index">Home</a>
-          </form>
+       <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src = "https://img.icons8.com/?size=50&id=65342&format=png&color=000000" alt = "">
+           </a>
+           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="fetchByEmail?emailId=${user.emailId}">Edit Profile</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+           </ul>
        </li>
+    </ul>
   </div>
 </nav>
 <c:if test="${not empty error}">
     <p style="color: black;">${error}</p>
 </c:if>
-<div class="d-flex justify-content-center align-items-center ">
+<div class="d-flex justify-content-center align-items-center  mt-5 ">
 <div class="card custom-card">
     <div class="card-body">
-        <h4 class="card-title text-center">User Registration</h4>
+        <h4 class="card-title text-center">Edit Your Profile</h4>
         <form action="update" method="post">
             <div class="mb-3">
                 <label class="form-label">Name</label>

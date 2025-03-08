@@ -29,8 +29,8 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#"> <img src="https://x-workz.in/static/media/Logo.cf195593dc1b3f921369.png" alt="" width="70" height="70"></a>
+  <div class="container">
+    <a class="navbar-brand" href="#"> <img src="https://x-workz.in/static/media/Logo.cf195593dc1b3f921369.png" alt="" width="125" height="70"></a>
        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item dropdown">
                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -47,6 +47,6 @@
     </div>
   </div>
 </nav>
-<h2><center> Welcome TO The Main Page ${user.name}</center></h2>
+<h2 class="me-2 mt-5"><center> Welcome TO The Main Page ${user.name}</center></h2>
 </body>
 </html>

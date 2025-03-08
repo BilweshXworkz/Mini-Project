@@ -13,11 +13,12 @@
     <li class="nav-item">
        </ul>
           <form class="d-flex" action="">
-              <a class="nav-link" href="signin">Sign In</a>
+              <a class="nav-link btn-outline-light me-2 px-3 text-info" href="signin">Sign In</a>
+              <a class="nav-link btn-primary px-3 text-dark fw-bold" href="index">Home</a>
           </form>
        </li>
   </div>
 </nav>
-<h2><center> Your registration has been successful.  </center></h2>
+<h2 class="mt-5"><center> Your registration has been successful.  </center></h2>
 </body>
 </html>

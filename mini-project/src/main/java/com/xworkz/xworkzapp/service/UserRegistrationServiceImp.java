@@ -8,6 +8,8 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
+
 
 @Repository
 public class UserRegistrationServiceImp implements UserRegistrationService{
@@ -92,7 +94,19 @@ public class UserRegistrationServiceImp implements UserRegistrationService{
 
     @Override
     public UserRegistrationEntity authenticateUser(String emailId, String password) {
-        return repository.checkAuthenticateUser(emailId, password);
+        UserRegistrationEntity user = repository.fetchEmail(emailId);
+        if (user == null){
+            System.out.println("User not found");
+            return null;
+        }
+
+        if (user.getAccountLockedUntil() != null && user.getAccountLockedUntil().isAfter(LocalDateTime.now())){
+            System.out.println("Account is locked Until "+user.getAccountLockedUntil());
+            return null;
+        }
+
+        UserRegistrationEntity authenticateUser = repository.checkAuthenticateUser(emailId, password);
+        return authenticateUser;
     }
 
     @Override
@@ -130,6 +144,8 @@ public class UserRegistrationServiceImp implements UserRegistrationService{
 
         return repository.saveUpdate(entity, updatePassword);
     }
+
+
 
 
 }

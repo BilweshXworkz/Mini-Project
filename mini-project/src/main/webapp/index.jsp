@@ -8,17 +8,17 @@
 <nav class="navbar navbar-dark bg-dark">
   <div class="container">
     <a class="navbar-brand" href="#">
-      <img src="https://x-workz.in/static/media/Logo.cf195593dc1b3f921369.png" alt="" width="70" height="70">
+      <img src="https://x-workz.in/static/media/Logo.cf195593dc1b3f921369.png" alt="" width="125" height="70" class="me-2">
     </a>
     <li class="nav-item">
        </ul>
           <form class="d-flex" action="">
-              <a class="nav-link" href="signup">Sign Up</a>
-              <a class="nav-link" href="signin">Sign In</a>
+              <a class="nav-link btn-outline-light me-2 px-3 text-info" href="signup">Sign Up</a>
+              <a class="nav-link btn-outline-light me-2 px-3 text-info" href="signin">Sign In</a>
           </form>
        </li>
   </div>
 </nav>
-<h2><center> Welcome to Registration Page </center></h2>
+<h2 class="mt-5"><center> Welcome to Registration Page </center></h2>
 </body>
 </html>

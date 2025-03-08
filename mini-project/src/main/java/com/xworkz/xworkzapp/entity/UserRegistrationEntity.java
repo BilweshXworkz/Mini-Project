@@ -22,13 +22,20 @@
                     "u.name = :name, " +
                     "u.phoneNumber = :phoneNumber, " +
                     "u.age = :age, " +
-                    "u.location = :location " +  // Remove email update if it's a unique identifier
+                    "u.location = :location " +
                     "WHERE u.emailId = :emailId"
     )
     @NamedQuery(
             name = "updateUserPassword",
             query = "UPDATE UserRegistrationEntity u SET u.password = :password WHERE u.emailId = :emailId"
     )
+
+    @NamedQuery(
+            name = "updateUserFailedAttempts",
+            query = "UPDATE UserRegistrationEntity u SET u.failedAttempts = :failedAttempts, u.accountLockedUntil = :accountLockedUntil WHERE u.emailId = :emailId"
+    )
+
+
     public class UserRegistrationEntity {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
